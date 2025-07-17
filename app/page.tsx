@@ -25,7 +25,7 @@ export default async function Page() {
 
   try {
     // Fetch hero post
-    const heroRes = await fetch(`${backend_uri}/api/posts/featured-news/bhadrapur.com`, options)
+    const heroRes = await fetch(`${backend_uri}/api/posts/featured-news/sriyog.net`, options)
     if (!heroRes.ok) {
       throw new Error('Banner or hero fetch failed')
     }
@@ -34,7 +34,7 @@ export default async function Page() {
 
 
     // Fetch category data 
-    const res = await fetch(`${backend_uri}/api/posts/homepage/bhadrapur.com`, options)
+    const res = await fetch(`${backend_uri}/api/posts/homepage/sriyog.net`, options)
     if (!res.ok) throw new Error(`Failed to fetch homepage news`)
 
     const response = await res.json()

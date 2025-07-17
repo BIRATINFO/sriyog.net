@@ -37,7 +37,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
     try {
 
         // Fetch category data 
-        const res = await fetch(`${backend_uri}/api/posts/category-summary/${category}/bhadrapur.com`, options)
+        const res = await fetch(`${backend_uri}/api/posts/category-summary/${category}/sriyog.net`, options)
         if (!res.ok) {
             throw new Error(`Failed to fetch category: ${category}`)
         }
