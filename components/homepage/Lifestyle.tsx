@@ -13,7 +13,7 @@ const Lifestyle = ({ posts }: SummaryProps) => {
     if (!posts || posts.length === 0) {
         return (
             <div className="w-full px-4 lg:px-16 md:px-5 py-10">
-                <p className="text-center text-text-color">No Technology posts available</p>
+                <p className="text-center text-text-color">No Lifestyle posts available</p>
             </div>
         )
     }

@@ -5,7 +5,7 @@ import Image from 'next/image';
 export const navConfig = [
   { name: "होमपेज", path: "/" },
   { name: "राजनीति", path: "/politics" },
-  { name: "प्रबिधि", path: "/technology" },
+  { name: "प्रविधि", path: "/technology" },
   { name: "साहित्य", path: "/literature" },
   { name: "अर्थ", path: "/economy" },
   { name: "सम्पादकीय", path: "/editorial" },
