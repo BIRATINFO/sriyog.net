@@ -26,7 +26,7 @@ export default function MobileHeader({
                 updated[17] = {
                     ...updated[13],
                     name: token ? 'लेख्नुहोस' : 'समाचार लेख्नुहोस',
-                    path: token ? 'https://biratinfo.com/manager' : 'https://biratinfo.com/sign-up'
+                    path: token ? 'https://biratinfo.com/writer' : 'https://biratinfo.com/sign-up'
                 };
                 return updated;
             });
@@ -50,7 +50,7 @@ export default function MobileHeader({
                     </div>
                     <div className='relative h-10 w-[120px]'>
                         <Image
-                            src='/SRIOYG.svg'
+                            src='/SRIYOG.svg'
                             alt='SRIYOG Logo'
                             fill
                             className='object-contain'
@@ -61,7 +61,7 @@ export default function MobileHeader({
 
                 <div className='h-4 flex items-center gap-2'>
                     {isLoggedIn && (
-                        <Link href="/manager" className="text-2xl font-semibold">+</Link>
+                        <Link href="https://biratinfo.com/writer" className="text-2xl font-semibold">+</Link>
                     )}
                     <MobileNav
                         navItems={mobileNavItems}
