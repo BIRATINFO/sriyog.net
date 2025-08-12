@@ -17,6 +17,7 @@ import NotFound from '@/app/not-found';
 import { getNepaliCategory } from '@/components/homepage/Hero';
 import ArticleContent from '@/components/ArticleContent';
 import AuthorSection from '@/components/AuthorSection';
+import RoadblockBanner from '@/components/RoadBlockBanner';
 
 interface PostPageParams {
     category: string;
@@ -82,7 +83,7 @@ const PostHero = ({ post }: { post: SinglePost }) => {
     const heroBannerUrl = (post.heroBanner as ImageData)?.url;
     const title = post.title || '';
     return (
-        <div className="relative w-full h-[40vh] md:h-[85vh] overflow-hidden">
+        <div className="relative w-full h-[50vh] md:h-[85vh] overflow-hidden">
             {heroBannerUrl ? (
                 <Image
                     src={heroBannerUrl}
@@ -91,6 +92,7 @@ const PostHero = ({ post }: { post: SinglePost }) => {
                     className="object-cover w-full"
                     priority
                     sizes="(max-width: 768px) 100vw, 80vw"
+                    unoptimized
                 />
             ) : (
                 <div className="w-full h-full bg-gray-300" />
@@ -140,6 +142,21 @@ export default async function PostPage({ params }: { params: Promise<PostPagePar
     }
 
     try {
+
+        // First fetch roadblock banner immediately
+        const roadblockRes = await fetch(`${backend_uri}/api/roadblocks/network/sriyog.net`, {
+            headers: { 'x-special-key': apiKey },
+            cache: 'no-store'
+        });
+        const roadblockData = await roadblockRes.json();
+        const activeBanner = roadblockData?.data || null;
+
+        // Check if banner should be shown on article pages
+        const showRoadblockBanner = activeBanner &&
+            (activeBanner._doc.location === 'article' || activeBanner._doc.location === 'both') &&
+            activeBanner._doc.isActive;
+
+
         // Fetch main post
         const postRes = await fetch(`${backend_uri}/api/posts/full/${category}/${id}`, {
             headers: { 'x-special-key': apiKey },
@@ -178,6 +195,7 @@ export default async function PostPage({ params }: { params: Promise<PostPagePar
 
         return (
             <div className="bg-gray-50 min-h-screen flex flex-col">
+                {showRoadblockBanner && <RoadblockBanner data={activeBanner} pageType={'article'} />}
                 <Header />
                 <PostHero post={fetchedPost} />
                 <main className="flex-1 pb-8 bg-white">
